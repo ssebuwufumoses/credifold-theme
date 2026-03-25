@@ -191,7 +191,7 @@ h4, .h4    { font-size: clamp(1.1rem, 1.5vw, 1.375rem); }
 /* Logo */
 .site-logo { display: flex; align-items: center; gap: var(--sp-2); text-decoration: none; }
 .site-logo img,
-.site-logo .custom-logo { height: 44px !important; width: auto !important; max-width: none; }
+.site-logo .custom-logo { height: 36px !important; width: auto !important; max-width: none; }
 .site-logo .custom-logo-link { display: flex; align-items: center; }
 .site-logo__text {
   font-family: var(--font-heading);
@@ -205,13 +205,14 @@ h4, .h4    { font-size: clamp(1.1rem, 1.5vw, 1.375rem); }
 .primary-nav { display: flex; align-items: center; gap: var(--sp-1); }
 
 .primary-nav a {
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   font-weight: 500;
   color: rgba(255,255,255,0.85);
-  padding: var(--sp-1) var(--sp-2);
+  padding: var(--sp-1) 14px;
   border-radius: var(--radius-sm);
   transition: color var(--duration-fast) var(--ease);
   letter-spacing: 0.01em;
+  white-space: nowrap;
 }
 .primary-nav a:hover { color: var(--cf-gold); }
 .primary-nav .current-menu-item > a { color: var(--cf-gold); }
