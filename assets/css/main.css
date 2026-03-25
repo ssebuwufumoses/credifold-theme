@@ -1226,7 +1226,102 @@ h4, .h4    { font-size: clamp(1.1rem, 1.5vw, 1.375rem); }
   .about-stat-card      { grid-template-columns: 1fr 1fr; }
 }
 
-/* ── 21. SERVICES ARCHIVE & SINGLE ────────────────────────── */
+/* ── 21. CONTACT PAGE ──────────────────────────────────────── */
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: var(--sp-8);
+  align-items: start;
+}
+
+/* Channel cards */
+.contact-channels { display: flex; flex-direction: column; gap: var(--sp-4); }
+.contact-channel-card {
+  display: flex;
+  gap: var(--sp-4);
+  align-items: flex-start;
+  padding: var(--sp-5);
+  background: var(--cf-white);
+  border: 1px solid var(--cf-gray-200);
+  border-radius: var(--radius-xl);
+  transition: box-shadow var(--duration-base) var(--ease), transform var(--duration-base) var(--ease);
+}
+.contact-channel-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.contact-channel-card__icon {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.contact-channel-card__icon svg { width: 26px; height: 26px; }
+.contact-channel-card__icon--whatsapp { background: rgba(37,211,102,0.1); color: #25D366; }
+.contact-channel-card__icon--email    { background: rgba(26,45,124,0.08); stroke: var(--cf-navy); }
+.contact-channel-card__icon--email svg { stroke: var(--cf-navy); }
+.contact-channel-card__icon--form     { background: rgba(201,168,76,0.1); }
+.contact-channel-card__icon--form svg { stroke: var(--cf-gold); }
+.contact-channel-card__title { font-size: 1.25rem; font-weight: 700; color: var(--cf-text-dark); margin-bottom: var(--sp-1); font-family: var(--font-body); }
+.contact-channel-card__desc  { font-size: 0.9rem; color: var(--cf-gray-600); line-height: 1.7; margin-bottom: var(--sp-3); }
+.contact-channel-card__number { font-size: 0.875rem; color: var(--cf-text-muted); margin-top: var(--sp-2); }
+
+/* Aside */
+.contact-aside { display: flex; flex-direction: column; gap: var(--sp-3); position: sticky; top: calc(var(--nav-height) + var(--sp-4)); }
+.contact-aside__card {
+  background: var(--cf-off-white);
+  border: 1px solid var(--cf-gray-200);
+  border-radius: var(--radius-xl);
+  padding: var(--sp-5);
+}
+.contact-aside__card--privacy {
+  background: var(--cf-grad-navy);
+  border-color: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+.contact-aside__card--privacy h4 { font-family: var(--font-heading); font-size: 1.125rem; color: var(--cf-white); }
+.contact-aside__card--privacy p  { font-size: 0.875rem; color: rgba(232,232,244,0.6); line-height: 1.7; }
+.contact-aside__title { font-family: var(--font-heading); font-size: 1.375rem; color: var(--cf-text-dark); margin-bottom: var(--sp-3); }
+
+/* FAQ accordion */
+.contact-faq { display: flex; flex-direction: column; }
+.contact-faq__item { border-bottom: 1px solid var(--cf-gray-200); }
+.contact-faq__item:last-child { border-bottom: none; }
+.contact-faq__question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  padding: var(--sp-3) 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--cf-text-dark);
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color var(--duration-fast);
+}
+.contact-faq__question:hover { color: var(--cf-navy); }
+.contact-faq__question[aria-expanded="true"] { color: var(--cf-navy); }
+.contact-faq__question svg { flex-shrink: 0; transition: transform var(--duration-base) var(--ease); }
+.contact-faq__question[aria-expanded="true"] svg { transform: rotate(180deg); }
+.contact-faq__answer { padding-bottom: var(--sp-3); }
+.contact-faq__answer p { font-size: 0.875rem; color: var(--cf-gray-600); line-height: 1.75; }
+
+@media (max-width: 960px) {
+  .contact-layout { grid-template-columns: 1fr; }
+  .contact-aside  { position: static; }
+}
+@media (max-width: 600px) {
+  .contact-channel-card { flex-direction: column; gap: var(--sp-3); }
+}
+
+/* ── 22. SERVICES ARCHIVE & SINGLE ────────────────────────── */
 
 /* Archive: wider cards */
 .services-grid--archive {

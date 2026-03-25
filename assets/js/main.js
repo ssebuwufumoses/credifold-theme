@@ -126,6 +126,16 @@
     });
   }
 
+  // ── FAQ accordion (contact page) ─────────────────────────────
+  document.querySelectorAll('.contact-faq__question').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      const answer   = document.getElementById( btn.getAttribute('aria-controls') );
+      btn.setAttribute('aria-expanded', !expanded);
+      if (answer) answer.hidden = expanded;
+    });
+  });
+
   // ── Multi-step form (Request Investigation) ─────────────────
   const rfiForm  = document.getElementById('cf-investigation-form');
   const steps    = document.querySelectorAll('.form-step');
