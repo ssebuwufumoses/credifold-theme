@@ -126,6 +126,30 @@
     });
   }
 
+  // ── Diaspora country tabs ─────────────────────────────────────
+  const diasporaTabs = document.querySelectorAll('.diaspora-tab');
+  if (diasporaTabs.length) {
+    diasporaTabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const targetId = 'dtab-' + tab.dataset.tab;
+        // Deactivate all tabs and panels
+        diasporaTabs.forEach((t) => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        document.querySelectorAll('.diaspora-panel').forEach((p) => {
+          p.classList.remove('active');
+          p.hidden = true;
+        });
+        // Activate selected
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        const panel = document.getElementById(targetId);
+        if (panel) { panel.classList.add('active'); panel.hidden = false; }
+      });
+    });
+  }
+
   // ── FAQ accordion (contact page + FAQ page) ──────────────────
   document.querySelectorAll('.contact-faq__question, .faq-item__question').forEach((btn) => {
     btn.addEventListener('click', () => {

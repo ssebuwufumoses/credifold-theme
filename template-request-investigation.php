@@ -6,16 +6,16 @@
 get_header();
 
 $service_types = [
-  'property'   => 'Property & Land Verification',
-  'diaspora'   => 'Diaspora Investment Protection',
+  'property'   => 'Property & Land',
+  'diaspora'   => 'Diaspora Protection',
   'corporate'  => 'Corporate Due Diligence',
-  'background' => 'Employee / Background Check',
-  'marital'    => 'Marital & Relationship Investigation',
-  'fraud'      => 'Fraud & Financial Investigation',
+  'background' => 'Background Check',
+  'marital'    => 'Marital Investigation',
+  'fraud'      => 'Fraud & Finance',
   'missing'    => 'Missing Person',
-  'cyber'      => 'Cyber & Digital Investigation',
-  'kyc'        => 'KYC / Identity Verification',
-  'other'      => 'Other / Not Listed',
+  'cyber'      => 'Cyber & Digital',
+  'kyc'        => 'KYC / Identity',
+  'other'      => 'Other',
 ];
 ?>
 
@@ -171,53 +171,6 @@ $service_types = [
                   <option value="Europe">Europe 🇪🇺</option>
                   <option value="Other">Other</option>
                 </select>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label form-label--light">Preferred date &amp; time to be contacted</label>
-                <p class="form-hint" style="margin-bottom:var(--sp-2);">All times in East Africa Time (EAT, UTC+3). We'll do our best to reach you at your chosen slot.</p>
-
-                <div class="datetime-picker">
-                  <!-- Date picker -->
-                  <div class="datetime-picker__date">
-                    <label class="datetime-picker__section-label">Select a date</label>
-                    <input type="date" id="preferred_date" name="preferred_date"
-                           class="form-input form-input--dark datetime-picker__date-input"
-                           min="<?php echo esc_attr( gmdate( 'Y-m-d' ) ); ?>">
-                  </div>
-
-                  <!-- Time slots -->
-                  <div class="datetime-picker__slots" id="time-slots-wrap">
-                    <label class="datetime-picker__section-label">Select a time slot</label>
-                    <div class="time-slots-grid" id="time-slots-grid">
-                      <?php
-                      $slots = [
-                        'morning'   => [ '08:00', '09:00', '10:00', '11:00' ],
-                        'afternoon' => [ '12:00', '13:00', '14:00', '15:00', '16:00' ],
-                        'evening'   => [ '17:00', '18:00', '19:00', '20:00' ],
-                      ];
-                      $labels = [ 'morning' => 'Morning', 'afternoon' => 'Afternoon', 'evening' => 'Evening' ];
-                      foreach ( $slots as $period => $times ) : ?>
-                        <div class="time-slots__group">
-                          <span class="time-slots__period"><?php echo esc_html( $labels[ $period ] ); ?></span>
-                          <div class="time-slots__row">
-                            <?php foreach ( $times as $t ) :
-                              $hour   = (int) substr( $t, 0, 2 );
-                              $ampm   = $hour >= 12 ? 'PM' : 'AM';
-                              $hour12 = $hour > 12 ? $hour - 12 : ( $hour === 0 ? 12 : $hour );
-                              $display = sprintf( '%d:00 %s', $hour12, $ampm );
-                            ?>
-                              <button type="button" class="time-slot-btn" data-time="<?php echo esc_attr( $t ); ?>">
-                                <?php echo esc_html( $display ); ?>
-                              </button>
-                            <?php endforeach; ?>
-                          </div>
-                        </div>
-                      <?php endforeach; ?>
-                    </div>
-                    <input type="hidden" name="preferred_time" id="preferred_time">
-                  </div>
-                </div>
               </div>
 
               <div class="form-group">
