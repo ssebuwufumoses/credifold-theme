@@ -5,6 +5,7 @@ define( 'CF_THEME_VERSION', '1.0.0' );
 define( 'CF_THEME_DIR', get_template_directory() );
 define( 'CF_THEME_URI', get_template_directory_uri() );
 
+require_once CF_THEME_DIR . '/inc/helpers.php';
 require_once CF_THEME_DIR . '/inc/enqueue.php';
 require_once CF_THEME_DIR . '/inc/menus.php';
 require_once CF_THEME_DIR . '/inc/post-types.php';
