@@ -126,8 +126,8 @@
     });
   }
 
-  // ── FAQ accordion (contact page) ─────────────────────────────
-  document.querySelectorAll('.contact-faq__question').forEach((btn) => {
+  // ── FAQ accordion (contact page + FAQ page) ──────────────────
+  document.querySelectorAll('.contact-faq__question, .faq-item__question').forEach((btn) => {
     btn.addEventListener('click', () => {
       const expanded = btn.getAttribute('aria-expanded') === 'true';
       const answer   = document.getElementById( btn.getAttribute('aria-controls') );
