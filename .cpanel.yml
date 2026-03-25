@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/loveazom/credifold.com/wp-content/themes/credifold
+    - /bin/mkdir -p $DEPLOYPATH
+    - /bin/cp -r . $DEPLOYPATH
