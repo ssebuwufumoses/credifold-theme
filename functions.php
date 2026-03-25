@@ -37,10 +37,10 @@ add_action( 'after_setup_theme', 'credifold_content_width', 0 );
 
 // WhatsApp & contact helpers (editable from Customizer)
 function cf_whatsapp() {
-    return get_theme_mod( 'cf_whatsapp_number', '+256700000000' );
+    return get_theme_mod( 'cf_whatsapp_number', '+256770950499' );
 }
 function cf_email() {
-    return get_theme_mod( 'cf_contact_email', 'info@credifold.com' );
+    return get_theme_mod( 'cf_contact_email', 'inquiries@credifold.com' );
 }
 function cf_whatsapp_link( $message = '' ) {
     $number  = preg_replace( '/[^0-9]/', '', cf_whatsapp() );
@@ -54,9 +54,9 @@ function credifold_customizer( $wp_customize ) {
         'title'    => __( 'CrediFold Contact', 'credifold' ),
         'priority' => 30,
     ] );
-    $wp_customize->add_setting( 'cf_whatsapp_number', [ 'default' => '+256700000000', 'sanitize_callback' => 'sanitize_text_field' ] );
+    $wp_customize->add_setting( 'cf_whatsapp_number', [ 'default' => '+256770950499', 'sanitize_callback' => 'sanitize_text_field' ] );
     $wp_customize->add_control( 'cf_whatsapp_number', [ 'label' => 'WhatsApp Number', 'section' => 'cf_contact', 'type' => 'text' ] );
-    $wp_customize->add_setting( 'cf_contact_email', [ 'default' => 'info@credifold.com', 'sanitize_callback' => 'sanitize_email' ] );
+    $wp_customize->add_setting( 'cf_contact_email', [ 'default' => 'inquiries@credifold.com', 'sanitize_callback' => 'sanitize_email' ] );
     $wp_customize->add_control( 'cf_contact_email', [ 'label' => 'Contact Email', 'section' => 'cf_contact', 'type' => 'email' ] );
 }
 add_action( 'customize_register', 'credifold_customizer' );
