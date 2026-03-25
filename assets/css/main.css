@@ -1226,7 +1226,153 @@ h4, .h4    { font-size: clamp(1.1rem, 1.5vw, 1.375rem); }
   .about-stat-card      { grid-template-columns: 1fr 1fr; }
 }
 
-/* ── 21. CONTACT PAGE ──────────────────────────────────────── */
+/* ── 21. HOW IT WORKS PAGE ─────────────────────────────────── */
+
+.hiw-intro {
+  max-width: 720px;
+  margin: 0 auto var(--sp-10);
+  text-align: center;
+  font-size: 1.125rem;
+  color: var(--cf-gray-600);
+  line-height: 1.8;
+}
+
+/* Steps timeline */
+.hiw-steps { max-width: 860px; margin-inline: auto; }
+
+.hiw-step {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: var(--sp-6);
+  margin-bottom: var(--sp-2);
+}
+
+.hiw-step__left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.hiw-step__num {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--cf-grad-navy);
+  color: var(--cf-gold);
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid rgba(201,168,76,0.25);
+  box-shadow: 0 0 0 6px rgba(26,45,124,0.06);
+}
+.hiw-step__line {
+  width: 2px;
+  flex: 1;
+  background: linear-gradient(to bottom, rgba(201,168,76,0.3), rgba(201,168,76,0.05));
+  margin: var(--sp-2) 0;
+  min-height: 40px;
+}
+
+.hiw-step__right {
+  padding-bottom: var(--sp-8);
+  border-bottom: 1px solid var(--cf-gray-200);
+  margin-bottom: var(--sp-6);
+}
+.hiw-step:last-child .hiw-step__right { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+
+.hiw-step__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: rgba(26,45,124,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--sp-3);
+}
+.hiw-step__icon svg { width: 20px; height: 20px; stroke: var(--cf-navy); }
+
+.hiw-step__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  color: var(--cf-text-dark);
+  margin-bottom: 6px;
+}
+.hiw-step__summary {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--cf-navy);
+  margin-bottom: var(--sp-2);
+  font-family: var(--font-body);
+}
+.hiw-step__body {
+  font-size: 0.9375rem;
+  color: var(--cf-gray-600);
+  line-height: 1.8;
+  margin-bottom: var(--sp-4);
+}
+.hiw-step__details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: var(--sp-4);
+}
+.hiw-step__details li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--cf-gray-800);
+  line-height: 1.5;
+}
+.hiw-step__details svg { flex-shrink: 0; margin-top: 2px; stroke: var(--cf-navy); }
+
+.hiw-step__note {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(201,168,76,0.07);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: var(--radius-md);
+  padding: 8px 14px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--cf-gold-dark);
+}
+.hiw-step__note svg { fill: var(--cf-gold); flex-shrink: 0; }
+
+/* Expectations grid */
+.hiw-expectations__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-4);
+  margin-top: var(--sp-2);
+}
+.hiw-expectation {
+  background: var(--cf-white);
+  border: 1px solid var(--cf-gray-200);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-4) var(--sp-5);
+  transition: box-shadow var(--duration-base);
+}
+.hiw-expectation:hover { box-shadow: var(--shadow-sm); }
+.hiw-expectation__q { font-size: 1rem; font-weight: 700; color: var(--cf-text-dark); margin-bottom: var(--sp-2); font-family: var(--font-body); }
+.hiw-expectation__a { font-size: 0.9rem; color: var(--cf-gray-600); line-height: 1.75; }
+
+@media (max-width: 768px) {
+  .hiw-step { grid-template-columns: 48px 1fr; gap: var(--sp-4); }
+  .hiw-step__num { width: 44px; height: 44px; font-size: 1rem; }
+  .hiw-expectations__grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .hiw-step { grid-template-columns: 1fr; }
+  .hiw-step__left { flex-direction: row; gap: var(--sp-2); align-items: center; margin-bottom: var(--sp-2); }
+  .hiw-step__line { display: none; }
+}
+
+/* ── 22. CONTACT PAGE ──────────────────────────────────────── */
 
 .contact-layout {
   display: grid;
