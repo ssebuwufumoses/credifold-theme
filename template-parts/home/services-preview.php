@@ -20,10 +20,9 @@ function cf_service_icon( $title ) {
 $services = get_posts( [
   'post_type'      => 'cf_service',
   'posts_per_page' => 6,
-  'meta_key'       => 'service_featured',
-  'meta_value'     => '1',
   'orderby'        => 'meta_value_num',
   'meta_key'       => 'service_order',
+  'meta_query'     => [ [ 'key' => 'service_featured', 'value' => '1' ] ],
 ] );
 
 // Fallback if no featured services yet

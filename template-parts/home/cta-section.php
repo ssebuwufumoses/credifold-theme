@@ -8,7 +8,7 @@
 
   <div class="container cta-section__inner">
 
-    <div class="section-eyebrow" style="justify-content:center;" class="fade-up">Ready to Act?</div>
+    <div class="section-eyebrow fade-up" style="justify-content:center;">Ready to Act?</div>
 
     <h2 class="cta-section__title display-2 fade-up fade-up--delay-1">
       The Truth Is Within Reach.
