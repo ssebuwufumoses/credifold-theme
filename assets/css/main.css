@@ -1430,6 +1430,11 @@ h4, .h4    { font-size: clamp(1.1rem, 1.5vw, 1.375rem); }
   box-shadow: 0 0 0 3px rgba(201,168,76,0.1);
   background: rgba(255,255,255,0.07);
 }
+/* Native select options need explicit background — browser doesn't inherit dark bg */
+select.form-input--dark option {
+  background: #0f1a4a;
+  color: #ffffff;
+}
 .form-hint { font-size: 0.8rem; color: rgba(232,232,244,0.35); margin-top: 6px; }
 
 /* Step actions */
