@@ -179,13 +179,19 @@
       kyc:'KYC / Identity Verification', other:'Other',
     };
 
+    const rawDate    = get('preferred_date');
+    const rawTime    = get('preferred_time');
+    const dateLabel  = rawDate ? new Date(rawDate + 'T12:00:00').toLocaleDateString('en-GB', { weekday:'long', day:'numeric', month:'long', year:'numeric' }) : 'Not selected';
+    const timeLabel  = rawTime ? (() => { const h = parseInt(rawTime); const ampm = h >= 12 ? 'PM' : 'AM'; return `${h > 12 ? h - 12 : h || 12}:00 ${ampm} EAT`; })() : 'Not selected';
+
     const rows = [
       { label:'Investigation Type', value: serviceLabels[get('service_type')] || get('service_type') },
       { label:'Urgency',            value: get('urgency') === 'urgent' ? 'Urgent (24hr)' : 'Normal (24–48hrs)' },
       { label:'Contact via',        value: get('contact_method') === 'whatsapp' ? 'WhatsApp' : 'Email' },
       { label:'Contact detail',     value: get('contact_detail') },
       { label:'Location',           value: get('location') || 'Not provided' },
-      { label:'Best time',          value: get('best_time') || 'Anytime' },
+      { label:'Preferred date',     value: dateLabel },
+      { label:'Preferred time',     value: timeLabel },
       { label:'Name',               value: get('client_name') || 'Not provided' },
     ];
     const situation = get('situation');
@@ -206,6 +212,16 @@
     document.querySelectorAll('[data-prev-step]').forEach((btn) => {
       btn.addEventListener('click', () => rfiShowStep(currentStep - 1));
     });
+    // Time slot selection
+    document.querySelectorAll('.time-slot-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.time-slot-btn').forEach((b) => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        const hidden = document.getElementById('preferred_time');
+        if (hidden) hidden.value = btn.dataset.time;
+      });
+    });
+
     document.querySelectorAll('[name="contact_method"]').forEach((radio) => {
       radio.addEventListener('change', () => {
         const label      = document.getElementById('contact-detail-label');

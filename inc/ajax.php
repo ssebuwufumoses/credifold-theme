@@ -18,7 +18,8 @@ function cf_handle_inquiry() {
     $contact_method = sanitize_text_field( wp_unslash( $_POST['contact_method']   ?? '' ) );
     $contact_detail = sanitize_text_field( wp_unslash( $_POST['contact_detail']   ?? '' ) );
     $location       = sanitize_text_field( wp_unslash( $_POST['location']         ?? '' ) );
-    $best_time      = sanitize_text_field( wp_unslash( $_POST['best_time']        ?? '' ) );
+    $preferred_date = sanitize_text_field( wp_unslash( $_POST['preferred_date']   ?? '' ) );
+    $preferred_time = sanitize_text_field( wp_unslash( $_POST['preferred_time']   ?? '' ) );
     $client_name    = sanitize_text_field( wp_unslash( $_POST['client_name']      ?? '' ) );
 
     // Require at minimum a service type and contact detail
@@ -46,7 +47,8 @@ function cf_handle_inquiry() {
     $body .= 'Contact Method:   ' . ucfirst( $contact_method ) . "\n";
     $body .= 'Contact Detail:   ' . $contact_detail . "\n";
     $body .= 'Location:         ' . ( $location ?: 'Not provided' ) . "\n";
-    $body .= 'Best Time:        ' . ucfirst( $best_time ) . "\n";
+    $body .= 'Preferred Date:   ' . ( $preferred_date ?: 'Not selected' ) . "\n";
+    $body .= 'Preferred Time:   ' . ( $preferred_time ? $preferred_time . ' EAT' : 'Not selected' ) . "\n";
     $body .= 'Name (optional):  ' . ( $client_name ?: 'Not provided' ) . "\n";
     $body .= "\nSituation / Notes:\n";
     $body .= ( $situation ?: 'Not provided' ) . "\n\n";
@@ -73,7 +75,8 @@ function cf_handle_inquiry() {
                 'inquiry_contact_method' => $contact_method,
                 'inquiry_contact_detail' => $contact_detail,
                 'inquiry_location'       => $location,
-                'inquiry_best_time'      => $best_time,
+                'inquiry_preferred_date' => $preferred_date,
+                'inquiry_preferred_time' => $preferred_time,
                 'inquiry_client_name'    => $client_name,
                 'inquiry_situation'      => $situation,
                 'inquiry_submitted_at'   => current_time( 'mysql' ),
