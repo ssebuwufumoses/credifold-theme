@@ -1092,7 +1092,141 @@ h4, .h4    { font-size: clamp(1.1rem, 1.5vw, 1.375rem); }
 }
 .form-textarea { min-height: 140px; resize: vertical; }
 
-/* ── 20. SERVICES ARCHIVE & SINGLE ────────────────────────── */
+/* ── 20. ABOUT PAGE ────────────────────────────────────────── */
+
+/* Mission split */
+.about-mission {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: var(--sp-10);
+  align-items: center;
+}
+.about-mission__title { color: var(--cf-text-dark); margin-bottom: var(--sp-3); }
+.about-mission__body  { color: var(--cf-gray-600); line-height: 1.8; margin-bottom: var(--sp-3); font-size: 1.0625rem; }
+
+/* Stats card */
+.about-stat-card {
+  position: relative;
+  background: var(--cf-grad-navy);
+  border-radius: var(--radius-xl);
+  padding: var(--sp-6);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+  overflow: hidden;
+}
+.about-stat-card__item { text-align: center; }
+.about-stat-card__num {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3vw, 2.75rem);
+  color: var(--cf-gold);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.about-stat-card__label {
+  font-size: 0.75rem;
+  color: rgba(232,232,244,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.about-stat-card__shield {
+  position: absolute;
+  bottom: -20%;
+  right: -10%;
+  width: 180px;
+  opacity: 0.08;
+  pointer-events: none;
+}
+.about-stat-card__shield svg { width: 100%; height: auto; }
+
+/* Pillars grid */
+.about-pillars__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-4);
+  margin-top: var(--sp-2);
+}
+.about-pillar {
+  background: var(--cf-white);
+  border: 1px solid var(--cf-gray-200);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-4);
+  transition: box-shadow var(--duration-base) var(--ease), transform var(--duration-base) var(--ease);
+}
+.about-pillar:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+.about-pillar__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: rgba(26,45,124,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--sp-3);
+}
+.about-pillar__icon svg { width: 22px; height: 22px; stroke: var(--cf-navy); }
+.about-pillar__title { font-size: 1rem; font-weight: 700; color: var(--cf-text-dark); margin-bottom: var(--sp-1); font-family: var(--font-body); }
+.about-pillar__body  { font-size: 0.875rem; color: var(--cf-gray-600); line-height: 1.7; }
+
+/* Clients grid */
+.about-clients__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-3);
+  margin-top: var(--sp-2);
+}
+.about-client-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-4);
+  transition: border-color var(--duration-base);
+}
+.about-client-card:hover { border-color: rgba(201,168,76,0.3); }
+.about-client-card__title { font-size: 1rem; font-weight: 700; color: var(--cf-gold); margin-bottom: var(--sp-1); font-family: var(--font-body); }
+.about-client-card__body  { font-size: 0.875rem; color: rgba(232,232,244,0.6); line-height: 1.7; }
+
+/* Commitment block */
+.about-commitment {
+  display: flex;
+  gap: var(--sp-6);
+  align-items: flex-start;
+  background: var(--cf-grad-navy);
+  border-radius: var(--radius-xl);
+  padding: var(--sp-8);
+}
+.about-commitment__icon {
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-lg);
+  background: rgba(201,168,76,0.1);
+  border: 1px solid rgba(201,168,76,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.about-commitment__icon svg { width: 32px; height: 32px; stroke: var(--cf-gold); }
+.about-commitment__title { font-family: var(--font-heading); font-size: clamp(1.5rem, 2vw, 2rem); color: var(--cf-white); margin-bottom: var(--sp-3); }
+.about-commitment__text  { font-size: 1rem; color: rgba(232,232,244,0.65); line-height: 1.8; margin-bottom: var(--sp-3); }
+.about-commitment__text:last-child { margin-bottom: 0; }
+
+@media (max-width: 1024px) {
+  .about-pillars__grid  { grid-template-columns: repeat(2, 1fr); }
+  .about-clients__grid  { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .about-mission        { grid-template-columns: 1fr; }
+  .about-commitment     { flex-direction: column; gap: var(--sp-4); padding: var(--sp-5); }
+}
+@media (max-width: 600px) {
+  .about-pillars__grid  { grid-template-columns: 1fr; }
+  .about-clients__grid  { grid-template-columns: 1fr; }
+  .about-stat-card      { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── 21. SERVICES ARCHIVE & SINGLE ────────────────────────── */
 
 /* Archive: wider cards */
 .services-grid--archive {
