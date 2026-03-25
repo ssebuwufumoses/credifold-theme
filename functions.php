@@ -11,6 +11,7 @@ require_once CF_THEME_DIR . '/inc/menus.php';
 require_once CF_THEME_DIR . '/inc/post-types.php';
 require_once CF_THEME_DIR . '/inc/scf-fields.php';
 require_once CF_THEME_DIR . '/inc/ajax.php';
+require_once CF_THEME_DIR . '/inc/smtp.php';
 
 function credifold_theme_setup() {
     add_theme_support( 'title-tag' );
