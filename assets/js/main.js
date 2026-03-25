@@ -126,32 +126,100 @@
     });
   }
 
-  // ── Multi-step form ──────────────────────────────────────────
-  const steps = document.querySelectorAll('.form-step');
-  const stepIndicators = document.querySelectorAll('.step-indicator');
+  // ── Multi-step form (Request Investigation) ─────────────────
+  const rfiForm  = document.getElementById('cf-investigation-form');
+  const steps    = document.querySelectorAll('.form-step');
+  const stepDots = document.querySelectorAll('.rfi-step-dot');
+  let   currentStep = 0;
 
-  function showStep(index) {
+  function rfiShowStep(index) {
     steps.forEach((s, i) => s.classList.toggle('active', i === index));
-    stepIndicators.forEach((s, i) => {
-      s.classList.toggle('active', i === index);
-      s.classList.toggle('done', i < index);
+    stepDots.forEach((d, i) => {
+      d.classList.toggle('active', i === index);
+      d.classList.toggle('done', i < index);
     });
+    currentStep = index;
+    if (rfiForm) rfiForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  document.querySelectorAll('[data-next-step]').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const current = parseInt(btn.closest('.form-step').dataset.step, 10);
-      showStep(current + 1);
-    });
-  });
+  function rfiValidateStep(index) {
+    if (index === 0) {
+      const serviceType = rfiForm && rfiForm.querySelector('[name="service_type"]:checked');
+      if (!serviceType) {
+        alert('Please select an investigation type to continue.');
+        return false;
+      }
+    }
+    if (index === 1) {
+      const contactDetail = rfiForm && rfiForm.querySelector('[name="contact_detail"]');
+      if (!contactDetail || !contactDetail.value.trim()) {
+        if (contactDetail) contactDetail.focus();
+        return false;
+      }
+    }
+    return true;
+  }
 
-  document.querySelectorAll('[data-prev-step]').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const current = parseInt(btn.closest('.form-step').dataset.step, 10);
-      showStep(current - 1);
-    });
-  });
+  function rfiBuildSummary() {
+    const summary = document.getElementById('rfi-summary');
+    if (!summary || !rfiForm) return;
 
-  if (steps.length) showStep(0);
+    const get = (name) => {
+      const checked = rfiForm.querySelector(`[name="${name}"]:checked`);
+      if (checked) return checked.value;
+      const el = rfiForm.querySelector(`[name="${name}"]`);
+      return el ? el.value : '';
+    };
+
+    const serviceLabels = {
+      property:'Property & Land Verification', diaspora:'Diaspora Investment Protection',
+      corporate:'Corporate Due Diligence', background:'Employee / Background Check',
+      marital:'Marital & Relationship Investigation', fraud:'Fraud & Financial Investigation',
+      missing:'Missing Person', cyber:'Cyber & Digital Investigation',
+      kyc:'KYC / Identity Verification', other:'Other',
+    };
+
+    const rows = [
+      { label:'Investigation Type', value: serviceLabels[get('service_type')] || get('service_type') },
+      { label:'Urgency',            value: get('urgency') === 'urgent' ? 'Urgent (24hr)' : 'Normal (24–48hrs)' },
+      { label:'Contact via',        value: get('contact_method') === 'whatsapp' ? 'WhatsApp' : 'Email' },
+      { label:'Contact detail',     value: get('contact_detail') },
+      { label:'Location',           value: get('location') || 'Not provided' },
+      { label:'Best time',          value: get('best_time') || 'Anytime' },
+      { label:'Name',               value: get('client_name') || 'Not provided' },
+    ];
+    const situation = get('situation');
+    summary.innerHTML = `<dl class="rfi-summary__list">
+      ${rows.map(r => `<div class="rfi-summary__row"><dt>${r.label}</dt><dd>${r.value}</dd></div>`).join('')}
+      ${situation ? `<div class="rfi-summary__row rfi-summary__row--full"><dt>Situation notes</dt><dd>${situation}</dd></div>` : ''}
+    </dl>`;
+  }
+
+  if (steps.length) {
+    document.querySelectorAll('[data-next-step]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        if (!rfiValidateStep(currentStep)) return;
+        if (currentStep === 1) rfiBuildSummary();
+        rfiShowStep(currentStep + 1);
+      });
+    });
+    document.querySelectorAll('[data-prev-step]').forEach((btn) => {
+      btn.addEventListener('click', () => rfiShowStep(currentStep - 1));
+    });
+    document.querySelectorAll('[name="contact_method"]').forEach((radio) => {
+      radio.addEventListener('change', () => {
+        const label      = document.getElementById('contact-detail-label');
+        const input      = document.getElementById('contact_detail');
+        const isWhatsApp = radio.value === 'whatsapp';
+        if (label) label.textContent = isWhatsApp ? 'WhatsApp Number' : 'Email Address';
+        if (input) {
+          input.type        = isWhatsApp ? 'text' : 'email';
+          input.placeholder = isWhatsApp ? '+256 700 000 000' : 'your@email.com';
+          input.value       = '';
+        }
+      });
+    });
+    rfiShowStep(0);
+  }
 
 })();

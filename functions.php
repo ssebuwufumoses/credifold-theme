@@ -9,6 +9,7 @@ require_once CF_THEME_DIR . '/inc/enqueue.php';
 require_once CF_THEME_DIR . '/inc/menus.php';
 require_once CF_THEME_DIR . '/inc/post-types.php';
 require_once CF_THEME_DIR . '/inc/scf-fields.php';
+require_once CF_THEME_DIR . '/inc/ajax.php';
 
 function credifold_theme_setup() {
     add_theme_support( 'title-tag' );
