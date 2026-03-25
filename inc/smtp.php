@@ -6,7 +6,7 @@
  */
 add_action( 'phpmailer_init', function ( $phpmailer ) {
     $phpmailer->isSMTP();
-    $phpmailer->Host       = 'mail.credifold.com';
+    $phpmailer->Host       = defined( 'CF_SMTP_HOST' ) ? CF_SMTP_HOST : 'mail.credifold.com';
     $phpmailer->SMTPAuth   = true;
     $phpmailer->Port       = 465;
     $phpmailer->SMTPSecure = 'ssl';

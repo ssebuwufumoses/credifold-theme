@@ -61,32 +61,29 @@ function cf_handle_inquiry() {
         'From: CrediFold Website <no-reply@credifold.com>',
     ];
 
-    $sent = wp_mail( $to, $subject, $body, $headers );
+    // Always save to database first — inquiry is never lost even if email fails
+    wp_insert_post( [
+        'post_type'   => 'cf_inquiry',
+        'post_status' => 'private',
+        'post_title'  => sprintf( '%s — %s', ucwords( str_replace( '_', ' ', $service_type ) ), current_time( 'Y-m-d H:i' ) ),
+        'meta_input'  => [
+            'inquiry_service_type'   => $service_type,
+            'inquiry_urgency'        => $urgency,
+            'inquiry_contact_method' => $contact_method,
+            'inquiry_contact_detail' => $contact_detail,
+            'inquiry_location'       => $location,
+            'inquiry_preferred_date' => $preferred_date,
+            'inquiry_preferred_time' => $preferred_time,
+            'inquiry_client_name'    => $client_name,
+            'inquiry_situation'      => $situation,
+            'inquiry_submitted_at'   => current_time( 'mysql' ),
+        ],
+    ] );
 
-    if ( $sent ) {
-        // Also save as a custom post for record-keeping (optional, no SCF needed)
-        wp_insert_post( [
-            'post_type'   => 'cf_inquiry',
-            'post_status' => 'private',
-            'post_title'  => sprintf( '%s — %s', ucwords( str_replace( '_', ' ', $service_type ) ), current_time( 'Y-m-d H:i' ) ),
-            'meta_input'  => [
-                'inquiry_service_type'   => $service_type,
-                'inquiry_urgency'        => $urgency,
-                'inquiry_contact_method' => $contact_method,
-                'inquiry_contact_detail' => $contact_detail,
-                'inquiry_location'       => $location,
-                'inquiry_preferred_date' => $preferred_date,
-                'inquiry_preferred_time' => $preferred_time,
-                'inquiry_client_name'    => $client_name,
-                'inquiry_situation'      => $situation,
-                'inquiry_submitted_at'   => current_time( 'mysql' ),
-            ],
-        ] );
+    // Attempt email notification — silent fail, inquiry already saved above
+    wp_mail( $to, $subject, $body, $headers );
 
-        wp_send_json_success( 'Inquiry received.' );
-    } else {
-        wp_send_json_error( 'Email delivery failed. Please contact us via WhatsApp.' );
-    }
+    wp_send_json_success( 'Inquiry received.' );
 }
 add_action( 'wp_ajax_cf_submit_inquiry',        'cf_handle_inquiry' );
 add_action( 'wp_ajax_nopriv_cf_submit_inquiry', 'cf_handle_inquiry' );
