@@ -14,17 +14,19 @@
   <div class="container">
 
     <!-- Logo -->
-    <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-logo" aria-label="CrediFold Home">
+    <div class="site-logo">
       <?php if ( has_custom_logo() ) :
         the_custom_logo();
       else : ?>
+      <a href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="CrediFold Home">
         <svg width="32" height="36" viewBox="0 0 32 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M16 0L0 6V18C0 27.4 7.2 34.4 16 36C24.8 34.4 32 27.4 32 18V6L16 0Z" fill="#C9A84C" fill-opacity="0.15" stroke="#C9A84C" stroke-width="1.5"/>
           <path d="M16 4L4 9V18C4 25.2 9.4 31.2 16 32.8C22.6 31.2 28 25.2 28 18V9L16 4Z" fill="#1A2D7C" fill-opacity="0.6"/>
         </svg>
         <span class="site-logo__text">Credi<span>Fold</span></span>
+      </a>
       <?php endif; ?>
-    </a>
+    </div>
 
     <!-- Primary Navigation -->
     <nav class="primary-nav" aria-label="Primary">
