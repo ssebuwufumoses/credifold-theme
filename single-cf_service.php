@@ -10,7 +10,7 @@ $price      = get_field( 'service_price' );
 $turnaround = get_field( 'service_turnaround' );
 ?>
 
-<main class="main-content" style="padding-top: var(--nav-height);">
+<main class="main-content">
 
   <!-- Hero -->
   <div class="svc-hero">

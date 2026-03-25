@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<main class="main-content" style="padding-top: var(--nav-height);">
+<main class="main-content">
 
   <!-- Hero -->
   <div class="page-hero">

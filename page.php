@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<main class="main-content" style="padding-top: var(--nav-height);">
+<main class="main-content">
   <div class="page-hero">
     <div class="page-hero__inner container">
       <h1 class="page-hero__title h1"><?php the_title(); ?></h1>

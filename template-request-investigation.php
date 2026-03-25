@@ -19,7 +19,7 @@ $service_types = [
 ];
 ?>
 
-<main class="main-content rfi-page" style="padding-top: var(--nav-height); background: var(--cf-black);">
+<main class="main-content rfi-page" style="background: var(--cf-black);">
 
   <!-- Page Hero -->
   <div class="rfi-hero">
